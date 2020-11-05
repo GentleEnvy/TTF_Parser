@@ -1,6 +1,6 @@
-package Task_3;
+package task_3;
 
-import Task_3.Window.Window;
+import task_3.window.Window;
 
 
 public class Main {
