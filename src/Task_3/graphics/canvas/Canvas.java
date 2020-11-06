@@ -49,8 +49,4 @@ public class Canvas extends ImageView {
                 pixel.getX() > writableImage.getWidth() ||
                 pixel.getY() > writableImage.getHeight();
     }
-
-    public boolean isOut(Point point) {
-        return isOut(convert(point));
-    }
 }

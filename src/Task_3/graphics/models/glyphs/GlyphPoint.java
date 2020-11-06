@@ -9,8 +9,7 @@ public class GlyphPoint {
     private final boolean isCurve;
 
     public GlyphPoint(int x, int y, boolean isCurve) {
-        this.point = new Point(x, y);
-        this.isCurve = isCurve;
+        this(new Point(x, y), isCurve);
     }
 
     public GlyphPoint(Point point, boolean isCurve) {
@@ -21,16 +20,7 @@ public class GlyphPoint {
     public Point getPoint() {
         return point;
     }
-
     public boolean isCurve() {
         return isCurve;
-    }
-
-    @Override
-    public String toString() {
-        return "new GlyphPoint(" +
-                (int) point.getX() + ", " + (int) point.getY() +
-                ", " + isCurve +
-                "),";
     }
 }

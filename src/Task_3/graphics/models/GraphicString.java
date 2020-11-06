@@ -2,7 +2,6 @@ package task_3.graphics.models;
 
 import task_3.graphics.Graphic;
 import task_3.graphics.canvas.Canvas;
-import task_3.graphics.models.glyphs.Glyph;
 import task_3.graphics.models.glyphs.GraphicGlyph;
 import task_3.ttf_parser.Font;
 
@@ -33,7 +32,6 @@ public class GraphicString extends Graphic {
     public void setFontSize(int fontSize) {
         this.fontSize = fontSize;
     }
-
     public void setSpace(int space) {
         this.space = space;
     }
@@ -41,7 +39,6 @@ public class GraphicString extends Graphic {
     public void setRotateOfDegrees(double degreesAngle) {
         getRenderParameters().setDegreesAngle(degreesAngle);
     }
-
     public void setRotateOfRadians(double radiansAngle) {
         getRenderParameters().setRadiansAngle(radiansAngle);
     }

@@ -16,16 +16,6 @@ class CMap {
             this.endCode = endCode;
             this.idDelta = idDelta;
         }
-
-        @Override
-        public String toString() {
-            return "Segment{" +
-                    "idRangeOffset=" + idRangeOffset +
-                    ", startCode=" + startCode +
-                    ", endCode=" + endCode +
-                    ", idDelta=" + idDelta +
-                    '}';
-        }
     }
 
     private final Map<Character, Integer> charMap = new HashMap<>();
@@ -43,41 +33,34 @@ class CMap {
     private List<Segment> readSegments(BinaryReader file) {
         List<Segment> segments = new ArrayList<>();
 
-        int format = file.getUint16();
-        int length = file.getUint16();
-        int language = file.getUint16();
+        file.getUint16();  // format
+        file.getUint16();  // length
+        file.getUint16();  // language
 
-        int segCount = file.getUint16() / 2;  // 2x segcount
+        int segCount = file.getUint16() / 2;
 
-        int searchRange = file.getUint16();  // 2 * (2**floor(log2(segCount)))
-
-        int entrySelector = file.getUint16();  // log2(searchRange)
-
-        int rangeShift = file.getUint16();  // (2*segCount) - searchRange
+        file.getUint16();  // searchRange
+        file.getUint16();  // entrySelector
+        file.getUint16();  // rangeShift
 
         int[] endCodes = new int[segCount];
-        // Ending character code for each segment, last is 0xffff
         for (int i = 0; i < segCount; i++) {
             endCodes[i] = file.getUint16();
         }
 
-        // reservePAd
-        file.getUint16();
+        file.getUint16();  // reservePAd
 
         int[] startCodes = new int[segCount];
-        // starting character code for each segment
         for (int i = 0; i < segCount; i++) {
             startCodes[i] = file.getUint16();
         }
 
         int[] idDeltas = new int[segCount];
-        // Delta for all character codes in segment
         for (int i = 0; i < segCount; i++) {
             idDeltas[i] = file.getUint16();
         }
 
         int[] idRangeOffsets = new int[segCount];
-        // offset in bytes to glyph indexArray, or 0
         for (int i = 0; i < segCount; i++) {
             int ro = file.getUint16();
             if (ro != 0) {

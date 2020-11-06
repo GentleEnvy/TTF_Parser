@@ -24,41 +24,22 @@ public class Glyph {
     public short getNumberOfContours() {
         return numberOfContours;
     }
-
     public short getXMin() {
         return xMin;
     }
-
     public short getYMin() {
         return yMin;
     }
-
     public short getXMax() {
         return xMax;
     }
-
     public short getYMax() {
         return yMax;
     }
-
     public List<Integer> getContourEnds() {
         return contourEnds;
     }
-
     public List<GlyphPoint> getPoints() {
         return points;
-    }
-
-    @Override
-    public String toString() {
-        return "Glyph{" +
-                "numberOfContours=" + numberOfContours +
-                ", xMin=" + xMin +
-                ", yMin=" + yMin +
-                ", xMax=" + xMax +
-                ", yMax=" + yMax +
-                ", contourEnds=" + contourEnds +
-                ", points=" + points +
-                '}';
     }
 }

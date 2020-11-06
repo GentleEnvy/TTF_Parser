@@ -1,6 +1,5 @@
 package task_3.graphics.models;
 
-import javafx.scene.image.PixelWriter;
 import javafx.scene.paint.Color;
 import task_3.graphics.Graphic;
 import task_3.graphics.canvas.Canvas;

@@ -1,6 +1,7 @@
 package task_3.ttf_parser;
 
 import java.io.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 
 class BinaryReader {
@@ -20,26 +21,26 @@ class BinaryReader {
         }
     }
 
+    public long getPosition() {
+        return position;
+    }
+
     public long seek(long position) {
         long oldPosition = this.position;
         this.position = position;
 
         try {
-            //inputStream.skip(position - oldPosition);
             inputStream = new BufferedInputStream(
                     new FileInputStream(file),
                     (int) file.length()
             );
+            //noinspection ResultOfMethodCallIgnored
             inputStream.skip(position);
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
         }
 
         return oldPosition;
-    }
-
-    public long getPosition() {
-        return position;
     }
 
     public short getUint8() {

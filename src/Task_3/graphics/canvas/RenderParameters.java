@@ -68,11 +68,6 @@ public class RenderParameters {
                 rotateX(point.getX(), point.getY()),
                 rotateY(point.getX(), point.getY())
         );
-//        double rotatedOffsetX = rotateX(getOffsetX(), getOffsetY());
-//        double rotatedOffsetY = rotateY(getOffsetX(), getOffsetY());
-
-//        double x = (point.getX() + rotatedOffsetX) / getScaleX();
-//        double y = -(point.getY() + rotatedOffsetY) / getScaleY();
 
         double x = (point.getX() + getOffsetX()) / getScaleX();
         double y = -(point.getY() + getOffsetY()) / getScaleY();
@@ -94,7 +89,6 @@ public class RenderParameters {
         offsetY += rotateY(renderParameters.getOffsetX(), renderParameters.getOffsetY());
         scaleX *= renderParameters.getScaleX();
         scaleY *= renderParameters.getScaleY();
-
     }
 
     public RenderParameters copy() {
