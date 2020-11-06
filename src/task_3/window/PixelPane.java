@@ -26,7 +26,6 @@ public class PixelPane extends Pane {
     }
 
     private Pixel prevDrag = null;
-
     {
         setOnMousePressed(
                 event -> prevDrag = new Pixel(
@@ -90,8 +89,8 @@ public class PixelPane extends Pane {
         getChildren().clear();
 
         Canvas canvas = new Canvas(
-                getWidth() == 0 ? DEFAULT_SCREEN_WIGHT : (int) getWidth(),
-                getHeight() == 0 ? DEFAULT_SCREEN_HEIGHT : (int) getHeight()
+                getWidth() <= 0 ? DEFAULT_SCREEN_WIGHT : (int) getWidth(),
+                getHeight() <= 0 ? DEFAULT_SCREEN_HEIGHT : (int) getHeight()
         );
         canvas.addRenderParameters(renderParameters);
 

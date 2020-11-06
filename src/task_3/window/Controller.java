@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import task_3.graphics.models.GraphicString;
@@ -34,7 +35,11 @@ public class Controller {
     private double angle;
 
     @FXML
+    private VBox mainVBox;
+    @FXML
     private HBox mainPane;
+    @FXML
+    private HBox settingsHBox;
     @FXML
     private Button chooseFontButton;
     @FXML
@@ -48,8 +53,16 @@ public class Controller {
     public void initialize() {
         mainPane.getChildren().add(pixelPane);
         angle = getAngle();
-        pixelPane.render();
         chooseFontButton.setText(DEFAULT_TTF);
+
+        mainVBox.heightProperty().addListener((__, oldValue, newValue) -> {
+            pixelPane.setMinHeight(newValue.intValue() - settingsHBox.getHeight());
+            pixelPane.setMaxHeight(newValue.intValue() - settingsHBox.getHeight());
+        });
+        mainVBox.widthProperty().addListener((__, oldValue, newValue) -> {
+            pixelPane.setMinWidth(newValue.intValue());
+            pixelPane.setMaxWidth(newValue.intValue());
+        });
 
         inputTextField.textProperty().addListener(
                 (__, oldString, newString) -> renderString(newString)
@@ -70,6 +83,9 @@ public class Controller {
     @FXML
     private void chooseFontEvent() {
         File ttfFile = fileChooser.showOpenDialog(new Stage());
+        if (ttfFile == null) {
+            return;
+        }
         font = new Font(ttfFile);
         chooseFontButton.setText(ttfFile.getName().substring(
                 0, ttfFile.getName().length() - 4)
